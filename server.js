@@ -35,19 +35,6 @@ app.use(express.static('styles'));
 
 app.use(methodOverride('_method'));
 
-app.use(helmet());
-
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      // styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com'],
-      // scriptSrc: ["'self'", 'code.jquery.com', 'cdn.jsdelivr.net']
-    }
-  }
-}));
-
-
 app.get('/', (req, res) => {
   const title = 'Home';
   res.render(createPath('index'), { title });
@@ -78,8 +65,7 @@ app.post('/login', async (req, res) => {
 
 app.get('/signup', (req, res) => {
   const title = 'Signup';
-
-  res.render(createPath('signup'), {title });
+  res.render(createPath('signup'), {title});
 });
 
 app.post('/signup', async (req, res) => {
